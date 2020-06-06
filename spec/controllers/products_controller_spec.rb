@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController do
+  describe 'GET #index' do
+    before { get:index }
+    
+    it 'assigns @product' do
+      product = create(:product)
+      expect(assigns(:product)).to eq([product])
+    end
+
+    it 'renders index template' do
+      expect(response).to render_template('index')
+    end
+  end
 
   describe 'GET #new' do
     before { get :new }
