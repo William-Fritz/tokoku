@@ -6,3 +6,4 @@ RSpec.describe Product, type: :model do
     expect(build(:product)).to be_valid
   end
 end
+
