@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProductsController do
   describe 'GET #index' do
-    before { get:index }
+    before { get :index }
     
     it 'assigns @product' do
       product = create(:product)
@@ -15,7 +15,7 @@ RSpec.describe ProductsController do
   end
 
   describe 'GET #show' do
-    before { get:show, params: params }
+    before { get :show, params: params }
     
     let(:params) do
       { id: product.id }
@@ -69,6 +69,19 @@ RSpec.describe ProductsController do
     it 'creates a product' do
       expect { subject }.to change(Product, :count)
         .from(0).to(1)
+    end
+  end
+
+  describe 'PATCH #update' do
+    subject { patch :update, params: params }
+    let!(:product) { create(:product) }
+    
+    let(:params) do
+      {id: product.id, product: { name: 'Telor'} }
+    end
+
+    it 'updates product' do
+      expect{ subject }.to change { product.reload.name }.from('Beras').to('Telor') 
     end
   end
 end
