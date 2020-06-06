@@ -20,6 +20,7 @@ RSpec.describe ProductsController do
     let(:params) do
       { id: product.id }
     end
+
     let!(:product) { create(:product) }
 
     it 'assigns @product' do
@@ -31,6 +32,24 @@ RSpec.describe ProductsController do
     end
   end
 
+  describe 'Get #edit' do
+    before { get :edit, params: params }
+    
+    let(:params) do
+      { id: product.id }
+    end
+    
+    let!(:product) { create(:product) }
+
+    it 'assigns @product' do
+      expect(assigns(:product)).to eq(product)
+    end
+
+    it 'renders the edit template' do
+      expect(response).to render_template(:edit)
+    end
+  end
+    
   describe 'GET #new' do
     before { get :new }
 
