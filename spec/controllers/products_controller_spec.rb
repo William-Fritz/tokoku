@@ -14,6 +14,23 @@ RSpec.describe ProductsController do
     end
   end
 
+  describe 'GET #show' do
+    before { get:show, params: params }
+    
+    let(:params) do
+      { id: product.id }
+    end
+    let!(:product) { create(:product) }
+
+    it 'assigns @product' do
+      expect(assigns(:product)).to eq(product)
+    end
+
+    it 'renders the show template' do
+      expect(response).to render_template(:show)
+    end
+  end
+
   describe 'GET #new' do
     before { get :new }
 
