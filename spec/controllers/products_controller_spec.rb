@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController do
+  
+  login_user
+
   describe 'GET #index' do
     before { get :index }
     
