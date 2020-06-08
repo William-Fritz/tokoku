@@ -7,3 +7,35 @@
     <%= link_to('Login', new_user_session_path) %>
   </li>
 <% end %>
+
+<h1>List of Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Buy Price</th>
+      <th>Sell Price</th>
+      <th>Quantity</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.buy_price %></td>
+        <td><%= product.sell_price %></td>
+        <td><%= product.stock_amount %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
+
